@@ -127,13 +127,13 @@ class MetasExtractor(BaseExtractor):
     def get_link_amphtml(self):
         kwargs = {'tag': 'link', 'attr': 'rel', 'value': 'amphtml'}
         meta = self.parser.getElementsByTag(self.article.doc, **kwargs)
-        if meta is not None and len(meta) > 0:
+        # if meta is not None and len(meta) > 0:
+        #     href = self.parser.getAttribute(meta[0], 'href')
+        #     return href
+        
+        if meta:
             href = self.parser.getAttribute(meta[0], 'href')
             return href
-        
-        # if meta:
-        #     favicon = self.parser.getAttribute(meta[0], 'href')
-        #     return favicon
         return ''
 
     def extract(self):
