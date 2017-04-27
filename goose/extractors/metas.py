@@ -125,10 +125,16 @@ class MetasExtractor(BaseExtractor):
         return self.get_meta_content("meta[name=keywords]")
 
     def get_link_amphtml(self):
-        """\
-        if the article has meta keywords set in the source, use that
-        """
-        return self.get_meta_content("link[rel=amphtml]")
+        kwargs = {'tag': 'link', 'attr': 'rel', 'value': 'amphtml'}
+        meta = self.parser.getElementsByTag(self.article.doc, **kwargs)
+        if meta is not None and len(meta) > 0:
+            href = self.parser.getAttribute(meta[0], 'href')
+            return href
+        
+        # if meta:
+        #     favicon = self.parser.getAttribute(meta[0], 'href')
+        #     return favicon
+        return ''
 
     def extract(self):
         return {
