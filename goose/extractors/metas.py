@@ -124,6 +124,12 @@ class MetasExtractor(BaseExtractor):
         """
         return self.get_meta_content("meta[name=keywords]")
 
+    def get_link_amphtml(self):
+        """\
+        if the article has meta keywords set in the source, use that
+        """
+        return self.get_meta_content("link[rel=amphtml]")
+
     def extract(self):
         return {
             "description": self.get_meta_description(),
@@ -131,5 +137,6 @@ class MetasExtractor(BaseExtractor):
             "lang": self.get_meta_lang(),
             "favicon": self.get_favicon(),
             "canonical": self.get_canonical_link(),
-            "domain": self.get_domain()
+            "domain": self.get_domain(),
+            "amphtml": self.get_link_amphtml()
         }

@@ -52,6 +52,9 @@ class Article(object):
         # holds the domain of this article we're parsing
         self.domain = u""
 
+        # holds the domain of this article we're parsing
+        self.amphtml = u""
+
         # holds the top Element we think
         # is a candidate for the main body of the article
         self.top_node = None
@@ -116,6 +119,7 @@ class Article(object):
                 "keywords": self.meta_keywords,
                 "favicon": self.meta_favicon,
                 "canonical": self.canonical_link,
+                "amphtml": self.amphtml,
             },
             "image": None,
             "domain": self.domain,
